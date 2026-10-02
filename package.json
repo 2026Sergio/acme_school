@@ -1,0 +1,24 @@
+{
+  "name": "acme_school",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2026Sergio/acme_school.git"
+  },
+  "keywords": [],
+  "author": "Sergio Ajù",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/2026Sergio/acme_school/issues"
+  },
+  "homepage": "https://github.com/2026Sergio/acme_school#readme",
+  "dependencies": {
+    "lodash": "^4.18.1"
+  }
+}
