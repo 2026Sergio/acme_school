@@ -1,19 +1,26 @@
+import { User } from './models/user.js';
 import { Student } from './models/student.js';
+import { Teacher } from './models/Teacher.js';
 
-console.log("=== INICIO DE PRUEBAS POO: ENTIDAD STUDENT ===");
+console.log("=== INICIO DE PRUEBAS DÍA 3: HERENCIA Y POLIMORFISMO ===");
 
-const student1 = new Student(1, "Ana María Gómez", "ana.gomez@university.edu", "2002-05-14");
+try {
+  const invalidUser = new User(0, "Prueba", "000000", "test@univ.edu");
+} catch (error) {
+  console.log(`[VALIDACIÓN CLASE ABSTRACTA]: ${error.message}`);
+}
+const student1 = new Student(1, "Carlos Pérez", "1098234567", "carlos.perez@univ.edu", "EST-2026-001");
+const teacher1 = new Teacher(2, "Dra. Elena Vargas", "79123456", "elena.vargas@univ.edu", "DOC-2026-999", "Bases de Datos Relacionales");
 
-console.log("Información inicial del estudiante:", student1.getInfo());
+const systemUsers = [student1, teacher1];
 
-console.log("Correo actual (vía getter):", student1.email);
+console.log("\n--- RECORRIENDO USUARIOS CON POLIMORFISMO ---");
+systemUsers.forEach(user => {
+  console.log(`- ${user.fullName} (${user.email}) -> ${user.getRoleDetails()}`);
+});
 
-student1.email = "ana.gomez.new@university.edu";
-console.log("Nuevo correo actualizado:", student1.email);
+console.log("\n--- ACCIONES ESPECÍFICAS ---");
+student1.enrollCourse("Programación Backend I");
+teacher1.assignGrade(student1, 95);
 
-student1.email = "correo-invalido-sin-arroba";
-
-student1.updateStatus("GRADUATED");
-
-console.log("Información final del estudiante:", student1.getInfo());
-console.log("=== FIN DE PRUEBAS DÍA 2 ===");
+console.log("\n=== FIN DE PRUEBAS DÍA 3 ===");
