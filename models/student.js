@@ -1,22 +1,31 @@
-import { User } from './user.js';
+import { requerido, enumerado, lanzarSiHayErrores } from '../utils/Validador.js';
 
-export class Student extends User {
-  #studentCode;
+const GENEROS_VALIDOS = ['masculino', 'femenino', 'otro'];
 
-  constructor(id, fullName, document, email, studentCode) {
-    super(id, fullName, document, email);
-    this.#studentCode = studentCode;
-    this.status = 'ACTIVE';
-  }
+export default class Student {
+  constructor({ id, code, firstName, lastName, identification_type_id, identificationNumber, gender, birthdate, email, address, city_id }) {
+    this.id = id ?? null;
+    this.code = code;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.identification_type_id = identification_type_id;
+    this.identificationNumber = identificationNumber;
+    this.gender = gender ?? null;
+    this.birthdate = birthdate ? new Date(birthdate).toISOString().slice(0, 19).replace('T', ' ') : null;
+    this.email = email ?? null;
+    this.address = address ?? null;
+    this.city_id = city_id ?? null;
 
-  get studentCode() {
-    return this.#studentCode;
-  }
-  getRoleDetails() {
-    return `Estudiante activo con código institucional: ${this.#studentCode}`;
-  }
-
-  enrollCourse(courseName) {
-    console.log(`El estudiante ${this.fullName} se ha inscrito exitosamente en el curso: ${courseName}`);
+    lanzarSiHayErrores('Student', [
+      requerido(this.code, 'code', { min: 3, max: 14 }),
+      requerido(this.firstName, 'firstName', { min: 2, max: 60 }),
+      requerido(this.lastName, 'lastName', { min: 2, max: 60 }),
+      !this.identification_type_id ? 'identification_type_id: requerido' : null,
+      requerido(this.identificationNumber, 'identificationNumber', { min: 5, max: 16 }),
+      this.gender ? enumerado(this.gender, 'gender', GENEROS_VALIDOS) : null,
+      this.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email) ? 'email: formato inválido' : null
+    ]);
   }
 }
+
+export { GENEROS_VALIDOS };
