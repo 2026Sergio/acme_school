@@ -3,6 +3,8 @@
 CLI en Node.js para gestionar una academia: tipos de identificación, ciudades,
 aulas, profesores, estudiantes, cursos (con temas), horarios de curso,
 
+![alt text](image.png)
+
 
 ## Instalación
 
