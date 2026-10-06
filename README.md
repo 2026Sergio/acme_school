@@ -1,9 +1,8 @@
-# Academia CLI
+## Acme_school
 
 CLI en Node.js para gestionar una academia: tipos de identificación, ciudades,
 aulas, profesores, estudiantes, cursos (con temas), horarios de curso,
-inscripciones y calificaciones. Misma arquitectura y lógica que el proyecto
-AmatiFit, adaptada a este modelo de datos.
+
 
 ## Instalación
 
@@ -62,3 +61,7 @@ Debe terminar con `TODAS LAS PRUEBAS PASARON (0 fallos)`. También puedes
 validar manualmente con `npm start`, siguiendo el flujo: Catálogos → Profesores
 y Estudiantes → Cursos (crear curso, tema, horario) → Inscripciones (inscribir,
 registrar nota, cancelar).
+
+## Autor:
+
+Sergio Ricardo Ajú Miranda
